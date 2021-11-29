@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-card
-        height="100vh"
+        style="min-height: 100vh; height: auto"
     >
       <v-app-bar
-          color="deep-purple"
+          color="#385F73"
           dark
       >
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
