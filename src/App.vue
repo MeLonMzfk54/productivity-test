@@ -38,41 +38,36 @@
       </v-navigation-drawer>
 
       <v-main>
-        <router-view/>
+          <router-view/>
       </v-main>
     </v-card>
   </v-app>
 </template>
 
 <script>
-
+import routesMixin from "@/mixins/routesMixin";
 export default {
   name: 'App',
+  mixins: [routesMixin],
   data(){
     return{
       drawer: false,
       group: null,
       showMenu: false,
-      menuItems: [
-        {title: "Home", link: "/", icon: "mdi-home"},
-        {title: "Characters", link: "/Characters", icon: 'mdi-account'},
-        {title: "Episodes", link: "/Episodes", icon: "mdi-folder-multiple-image"},
-        {title: "Locations", link: "/Locations", icon: "mdi-image-marker"},
-      ]
     }
   },
-  methods: {
-    switchUrl(url){
-      this.$router.push(url);
-    }
-  }
 };
 </script>
 
 <style lang="scss">
-  .header{
-    &__logo{
-      cursor: pointer;
+.container{
+  max-width: 1500px;
+  padding: 0px 15px;
+  margin: 0 auto;
+}
+  .default{
+    &__inner{
+      margin-top: 30px;
     }
   }
 </style>
