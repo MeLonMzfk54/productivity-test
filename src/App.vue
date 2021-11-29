@@ -53,7 +53,6 @@ export default {
     return{
       drawer: false,
       group: null,
-      showMenu: false,
     }
   },
 };
