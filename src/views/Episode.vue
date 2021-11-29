@@ -1,7 +1,7 @@
 <template>
   <v-card
       class="mx-auto mt-5"
-      max-width="344"
+      max-width="500"
   >
     <v-card-text>
       <div>{{ episode.episode }}</div>
@@ -10,7 +10,7 @@
       </p>
       <p>{{ episode.air_date }}</p>
     </v-card-text>
-    <v-card-actions class="justify-space-between">
+    <v-card-actions>
       <v-btn
           text
           color="teal accent-4"
@@ -37,15 +37,22 @@
             <v-list-item
                 v-for="(char, index) in characters"
                 :key="index"
-                style="cursor:pointer;"
+                style="min-height: auto"
             >
               <v-list-item-avatar>
                 <v-img :src="char.image"></v-img>
               </v-list-item-avatar>
 
-              <v-list-item-content>
+              <v-list-item-content class="">
                 <v-list-item-title v-html="char.name"></v-list-item-title>
               </v-list-item-content>
+              <v-list-item-action>
+                <router-link tag="button" :to="{name: 'idChars', params: {id: char.id}}">
+                  <v-btn icon>
+                    <v-icon color="grey lighten-1">mdi-information</v-icon>
+                  </v-btn>
+                </router-link>
+              </v-list-item-action>
             </v-list-item>
         </v-list>
         <v-card-actions class="pt-0">
@@ -92,13 +99,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-  .v-card--reveal {
-    bottom: -100%;
-    height: auto;
-    opacity: 1 !important;
-    position: absolute;
-    width: 100%;
-  }
-</style>

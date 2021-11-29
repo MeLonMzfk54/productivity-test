@@ -49,7 +49,7 @@
               {{ episode.air_date }}
             </v-card-text>
             <v-card-actions>
-              <router-link tag="button" :to="{name: 'Id', params: {id: episode.id}}">
+              <router-link tag="button" :to="{name: 'idEpisodes', params: {id: episode.id}}">
                 <v-btn
                     class="mt-3"
                 >

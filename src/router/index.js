@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Episode from '../views/Episode'
+import Character from '../views/Character'
 
 Vue.use(VueRouter)
 
@@ -17,13 +18,19 @@ const routes = [
     component: () => import('../views/Characters')
   },
   {
+    path: '/Characters/:id',
+    name: "idChars",
+    component: Character,
+    props: true,
+  },
+  {
     path: '/Episodes',
     name: 'Episodes',
     component: () => import('../views/Episodes')
   },
   {
     path: '/Episodes/:id',
-    name: "Id",
+    name: "idEpisodes",
     component: Episode,
     props: true,
   },
