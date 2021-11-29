@@ -1,67 +1,46 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-      class="header"
+    <v-card
+        height="100vh"
     >
-      <router-link tag="div" to="/" class="d-flex align-center header__logo">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-        <h2>Productivity-test</h2>
-      </router-link>
-
-      <v-spacer></v-spacer>
-      <div
-      v-if="!showMenu">
-        <v-btn
-            v-for="(item, i) in menuItems"
-            :key="i"
-            @click="switchUrl(item.link)"
-            text
-        >
-          <span>{{ item.title }}</span>
-        </v-btn>
-      </div>
-
-      <v-menu
-          bottom
-          left
-          v-else
+      <v-app-bar
+          color="deep-purple"
+          dark
       >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-              dark
-              icon
-              v-bind="attrs"
-              v-on="on"
-          >
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
+        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-        <v-list>
-          <v-list-item
-              v-for="(item, i) in menuItems"
-              :key="i"
-              @click="switchUrl(item.link)"
+        <router-link tag="h2" to="/" style="cursor: pointer">Productivity-test</router-link>
+      </v-app-bar>
+
+      <v-navigation-drawer
+          v-model="drawer"
+          absolute
+          temporary
+      >
+        <v-list
+            nav
+            dense
+        >
+          <v-list-item-group
+              v-model="group"
+              active-class="deep-purple--text text--accent-4"
           >
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
+            <v-list-item v-for="(item, i) in menuItems" :key="i"
+            @click="switchUrl(item.link)"
+            >
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
         </v-list>
-      </v-menu>
-    </v-app-bar>
+      </v-navigation-drawer>
 
-    <v-main>
-      <router-view/>
-    </v-main>
+      <v-main>
+        <router-view/>
+      </v-main>
+    </v-card>
   </v-app>
 </template>
 
@@ -69,18 +48,16 @@
 
 export default {
   name: 'App',
-  created(){
-    if(window.outerWidth < 644){
-      this.showMenu = true;
-    }
-  },
   data(){
     return{
+      drawer: false,
+      group: null,
       showMenu: false,
       menuItems: [
-        {title: "Characters", link: "/Characters"},
-        {title: "Episodes", link: "/Episodes"},
-        {title: "Locations", link: "/Locations"},
+        {title: "Home", link: "/", icon: "mdi-home"},
+        {title: "Characters", link: "/Characters", icon: 'mdi-account'},
+        {title: "Episodes", link: "/Episodes", icon: "mdi-folder-multiple-image"},
+        {title: "Locations", link: "/Locations", icon: "mdi-image-marker"},
       ]
     }
   },
