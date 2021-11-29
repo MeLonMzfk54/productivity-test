@@ -36,7 +36,7 @@
                   color="#385F73"
                   dark
                   class="mb-2 mt-0"
-                  v-for="(episode, i) in searchedEpisodes"
+                  v-for="(episode, i) in seasonsList[n-1]"
                   :key="i"
           >
             <v-card-title>
@@ -81,10 +81,21 @@ export default {
       return Array.from(count);
     },
     searchedEpisodes(){
-      return [...this.episodes]
+      return this.episodes
       .filter(episode =>{
           return(episode.name.toLowerCase().indexOf(this.searchEpisode.toLowerCase()) !== -1);
       });
+    },
+    seasonsList(){
+      let arr = [];
+      for(let i = 0; i < this.seasons.length; i++){
+        arr.push([]);
+        this.searchedEpisodes.map( el => {
+          if(el.episode.trim().toLowerCase().includes(this.seasons[i].trim().toLowerCase()))
+          arr[i].push(el);
+        });
+      }
+      return arr;
     },
   },
   created(){
