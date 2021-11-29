@@ -49,14 +49,19 @@
               {{ episode.air_date }}
             </v-card-text>
             <v-card-actions>
-              <v-btn
-                  class="mt-3"
-              >
-                Details
-                <v-icon class="ml-2">mdi-application-import</v-icon>
-              </v-btn>
+              <router-link tag="button" :to="{name: 'Id', params: {id: episode.id}}">
+                <v-btn
+                    class="mt-3"
+                >
+                  Details
+                  <v-icon class="ml-2">mdi-application-import</v-icon>
+                </v-btn>
+              </router-link>
             </v-card-actions>
           </v-card>
+          <div v-if="seasonsList[n-1].length <= 0">
+            there a no results.
+          </div>
         </v-tab-item>
       </v-tabs-items>
   </v-container>

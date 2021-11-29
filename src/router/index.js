@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Episode from '../views/Episode'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,12 @@ const routes = [
     path: '/Episodes',
     name: 'Episodes',
     component: () => import('../views/Episodes')
+  },
+  {
+    path: '/Episodes/:id',
+    name: "Id",
+    component: Episode,
+    props: true,
   },
   {
     path: '/Locations',
