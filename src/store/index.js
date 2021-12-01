@@ -22,9 +22,21 @@ export default new Vuex.Store({
   },
   actions: {
     initEpisodes: ({commit}) =>{
+      let allEpisodes = [];
+      var n = 0;
+      let i = 2;
       axios.get("https://rickandmortyapi.com/api/episode").then(response =>{
-          commit("SET_EPISODES", response.data.results);
-      });
+        allEpisodes.push(...response.data.results);
+        n = response.data.info;
+        while(i <= n.pages){
+          axios.get(n.next.slice(0,-1) + i).then(response => {
+            allEpisodes.push(...response.data.results);
+            n = response.data.info;
+          });
+          i++;
+        }
+      }).catch(error => console.log(error));
+      commit("SET_EPISODES", allEpisodes);
     },
     initCharacters: ({commit}) =>{
       axios.get("https://rickandmortyapi.com/api/character").then(response =>{
