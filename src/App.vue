@@ -25,4 +25,9 @@ export default {
       margin-top: 30px;
     }
   }
+  @media(max-width:400px){
+    .v-item-group.v-bottom-navigation .v-btn{
+      min-width: 75px !important;
+    }
+  }
 </style>

@@ -26,6 +26,7 @@
               season{{ n }}
             </v-tab>
           </v-tabs>
+          <div class="custom-tabs__arrow"></div>
         </template>
       </v-toolbar>
 
@@ -107,6 +108,47 @@ export default {
     if(!this.episodes.length) {
       this.$store.dispatch("initEpisodes");
     }
+  },
+  mounted() {
+    if(window.outerWidth <= 560){
+      setTimeout(() =>{
+        document.querySelector('.custom-tabs__arrow').style.display = "none";
+      }, 5000)
+    }
   }
 }
+
 </script>
+
+<style scoped lang="scss">
+@media(max-width:560px){
+  .custom-tabs__arrow{
+      position: relative;
+      &:after{
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background: url('../assets/images/arrow.svg');
+        transform: rotate(-90deg);
+        background-size: cover;
+        top: -12px;
+        right: -10px;
+        animation-name: arrowMove;
+        animation-duration: 1.5s;
+        animation-iteration-count:infinite;
+      }
+    }
+}
+@keyframes arrowMove {
+  0% {
+    right: -10;
+  }
+  50%{
+    right: -25px;
+  }
+  100%{
+    right: -10px;
+  }
+}
+</style>

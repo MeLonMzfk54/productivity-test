@@ -118,3 +118,25 @@ export default{
   },
 }
 </script>
+
+<style scoped>
+.v-list-item__subtitle{
+  border-bottom: 1px solid grey;
+  margin-bottom: 5px;
+}
+.v-list-item__title{
+  margin-bottom: 10px !important;
+}
+@media(max-width:560px){
+  .v-card__actions{
+    flex-direction: column ;
+  }
+  .v-btn.v-size--default{
+    font-size: 0.775rem;
+  }
+  .v-list-item__title{
+    text-overflow: initial;
+    white-space: normal;
+  }
+}
+</style>
