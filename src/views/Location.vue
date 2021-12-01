@@ -1,21 +1,23 @@
 <template>
-  <elem-display @show-chars="showChars" :characters="characters" :reveal="reveal">
+  <v-container>
+    <elem-display @show-chars="showChars" :characters="characters" :reveal="reveal">
 
-    <template v-slot:info>
-      <div>{{ location.type }}</div>
-      <p class="text-h4 text--primary">
-        {{ location.name }}
-      </p>
-      <p>dimension - {{ location.dimension }}</p>
-    </template>
+      <template v-slot:info>
+        <div>{{ location.type }}</div>
+        <p class="text-h4 text--primary">
+          {{ location.name }}
+        </p>
+        <p>dimension - {{ location.dimension }}</p>
+      </template>
 
-    <template v-slot:listName>
-      Characters List
-    </template>
-    <template v-slot:buttonName>
-      Residents
-    </template>
-  </elem-display>
+      <template v-slot:listName>
+        Characters List
+      </template>
+      <template v-slot:buttonName>
+        Residents
+      </template>
+    </elem-display>
+  </v-container>
 </template>
 <script>
 import elemDisplay from "@/components/elemDisplay";

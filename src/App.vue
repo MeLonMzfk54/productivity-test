@@ -1,69 +1,25 @@
 <template>
   <v-app>
-    <v-card
-        style="min-height: 100vh; height: auto"
-    >
-      <v-app-bar
-          color="#385F73"
-          dark
-      >
-        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-
-        <router-link tag="h2" to="/" style="cursor: pointer">Productivity-test</router-link>
-      </v-app-bar>
-
-      <v-navigation-drawer
-          v-model="drawer"
-          absolute
-          temporary
-      >
-        <v-list
-            nav
-            dense
-        >
-          <v-list-item-group
-              v-model="group"
-              active-class="deep-purple--text text--accent-4"
-          >
-            <v-list-item v-for="(item, i) in menuItems" :key="i"
-            @click="switchUrl(item.link)"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
-
+    <Header></Header>
+    <v-container>
       <v-main>
           <router-view/>
       </v-main>
-    </v-card>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import routesMixin from "@/mixins/routesMixin";
+import Header from "@/components/Header"
 export default {
   name: 'App',
-  mixins: [routesMixin],
-  data(){
-    return{
-      drawer: false,
-      group: null,
-    }
-  },
+  components: {
+    Header
+  }
 };
 </script>
 
 <style lang="scss">
-.container{
-  max-width: 1500px;
-  padding: 0px 15px;
-  margin: 0 auto;
-}
   .default{
     &__inner{
       margin-top: 30px;

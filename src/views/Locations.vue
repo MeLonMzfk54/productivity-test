@@ -4,7 +4,6 @@
     <v-toolbar
         dark
         flat
-        prominent
     >
       <v-text-field
           v-model="searchLocation"
