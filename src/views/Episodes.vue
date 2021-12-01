@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <h1>Episodes</h1>
       <v-toolbar
           dark
           flat
@@ -104,7 +105,9 @@ export default {
     },
   },
   created(){
-    this.$store.dispatch("initEpisodes");
+    if(!this.episodes.length) {
+      this.$store.dispatch("initEpisodes");
+    }
   }
 }
 </script>

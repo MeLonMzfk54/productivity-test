@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Episode from '../views/Episode'
 import Character from '../views/Character'
+import Location from "../views/Location"
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,12 @@ const routes = [
     path: '/Locations',
     name: 'Locations',
     component: () => import('../views/Locations.vue')
+  },
+  {
+    path: '/Locations/:id',
+    name: "idLocations",
+    component: Location,
+    props: true,
   },
   {
     path: "*",

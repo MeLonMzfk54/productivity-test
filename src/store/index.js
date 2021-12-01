@@ -8,22 +8,26 @@ export default new Vuex.Store({
     episodes: [],
     characters: [],
     locations: [],
+    locationNext: '',
+    characterNext: '',
   },
   mutations: {
     'SET_EPISODES' (state,episodes){
       state.episodes = episodes;
     },
     'SET_CHARACTERS' (state, characters){
-      state.characters = characters;
+      state.characters.push(...characters.results);
+      state.characterNext = characters.info.next;
     },
     'SET_LOCATIONS' (state, locations){
-      state.locations = locations;
+      state.locations.push(...locations.results);
+      state.locationNext = locations.info.next;
     }
   },
   actions: {
     initEpisodes: ({commit}) =>{
       let allEpisodes = [];
-      var n = 0;
+      let n = 0;
       let i = 2;
       axios.get("https://rickandmortyapi.com/api/episode").then(response =>{
         allEpisodes.push(...response.data.results);
@@ -38,14 +42,16 @@ export default new Vuex.Store({
       }).catch(error => console.log(error));
       commit("SET_EPISODES", allEpisodes);
     },
-    initCharacters: ({commit}) =>{
-      axios.get("https://rickandmortyapi.com/api/character").then(response =>{
-        commit("SET_CHARACTERS", response.data.results);
+
+    initCharacters: ({commit}, link = "https://rickandmortyapi.com/api/character") =>{
+      axios.get(link).then(response =>{
+        commit("SET_CHARACTERS", response.data);
       });
     },
-    initLocations: ({commit}) =>{
-      axios.get("https://rickandmortyapi.com/api/location").then(response =>{
-        commit("SET_LOCATIONS", response.data.results);
+
+    initLocations: ({commit}, link = "https://rickandmortyapi.com/api/location") =>{
+      axios.get(link).then(response =>{
+        commit("SET_LOCATIONS", response.data);
       });
     },
   },
@@ -53,5 +59,8 @@ export default new Vuex.Store({
     episodes: state => state.episodes,
     characters: state => state.characters,
     locations: state => state.locations,
+
+    locationNext: state => state.locationNext,
+    characterNext: state => state.characterNext,
   }
 })
