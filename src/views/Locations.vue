@@ -25,10 +25,10 @@
               :key="i"
       >
         <v-card-title>
-          planet: {{ location.name }}
+          {{ location.name }}
         </v-card-title>
         <v-card-subtitle>
-          type - {{ location.type }}
+           {{ location.type }}
         </v-card-subtitle>
         <v-card-text>
           dimension - {{ location.dimension }}
