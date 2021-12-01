@@ -80,7 +80,7 @@ export default {
           });
     },
     showButton(){
-      return this.next && this.searchLocation === '' ? true : false;
+      return this.next ? true : false;
     }
   },
   methods: {

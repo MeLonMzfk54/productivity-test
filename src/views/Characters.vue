@@ -111,7 +111,7 @@ export default {
       }
     },
     showButton(){
-      return this.next && this.searchCharacter === '' ? true : false;
+      return this.next ? true : false;
     }
   },
   methods: {

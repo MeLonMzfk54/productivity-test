@@ -5,16 +5,19 @@
       <v-main>
           <router-view/>
       </v-main>
+      <to-top-button></to-top-button>
     </v-container>
   </v-app>
 </template>
 
 <script>
 import Header from "@/components/Header"
+import ToTopButton from "@/components/ToTopButton";
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    ToTopButton,
   }
 };
 </script>
