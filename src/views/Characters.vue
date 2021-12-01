@@ -14,15 +14,28 @@
           prepend-inner-icon="mdi-magnify"
           solo-inverted
       ></v-text-field>
+      <template v-slot:extension>
+        <v-col
+            class="d-flex ml-1 mt-6"
+            cols="8"
+            sm="12"
+        >
+          <v-select
+              v-model="selectedItem"
+              :items="statusItems"
+              label="Status"
+          ></v-select>
+        </v-col>
+      </template>
     </v-toolbar>
-    <div v-if="searchedCharacters.length">
+    <div v-if="filteredByStatus.length">
       <div class="cards">
         <v-card flat
                 color="#385F73"
                 dark
                 :max-width="width"
                 class="mb-2 mt-0 mr-auto ml-auto"
-                v-for="(character, i) in searchedCharacters"
+                v-for="(character, i) in filteredByStatus"
                 :key="i"
         >
           <v-img
@@ -70,6 +83,8 @@ export default {
     return {
       width: 350,
       searchCharacter: '',
+      statusItems: ['All', 'Alive', 'Dead', 'Unknown'],
+      selectedItem: '',
     }
   },
   computed: {
@@ -84,6 +99,16 @@ export default {
           .filter(character =>{
             return(character.name.toLowerCase().indexOf(this.searchCharacter.toLowerCase()) !== -1);
           });
+    },
+    filteredByStatus(){
+      if(this.selectedItem.toLowerCase() == "all"){
+        return this.searchedCharacters;
+      } else {
+        return this.searchedCharacters
+            .filter(character => {
+              return(character.status.toLowerCase().indexOf(this.selectedItem.toLowerCase()) !== -1);
+            });
+      }
     },
     showButton(){
       return this.next && this.searchCharacter === '' ? true : false;
@@ -107,6 +132,9 @@ export default {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+  }
+  .v-toolbar__content{
+    flex-direction: column !important;
   }
   .custom-button{
     margin-top: 20px;
